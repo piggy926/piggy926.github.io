@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
-description: ''
+title: 
+subtitle: '不在能知，乃在能行'
+description: '欢迎来到Piggy的笔记空间~这里主要会记录一些随笔🌸'
 keywords:
-author: John Doe
-language: en
+author: Piggy
+language: zh-CN
 timezone: ''
 
 # URL
