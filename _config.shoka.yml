@@ -113,7 +113,7 @@ menu:
 # Value before `||` delimiter is the target permalink,
 # secend value is the name of Font icon.
 social:
-  #github: https://github.com/yourname || github || "#191717"
+  github: https://github.com/piggy926 || github || "#191717"
   #google: https://plus.google.com/yourname || google
   #twitter: https://twitter.com/yourname || twitter || "#00aff0"
   #zhihu: https://www.zhihu.com/people/yourname || zhihu || "#1e88e5"
@@ -361,24 +361,9 @@ autoprefixer:
   exclude:
     - '*.min.css'
 
-# 全局搜索
-algolia:
-  appId:  #Your appId
-  apiKey:  #Your apiKey
-  adminApiKey:  #Your adminApiKey
-  chunkSize: 5000
-  indexName: "" #"shoka"
-  fields:
-    - title
-    - path
-    - categories
-    - content:strip:truncate,0,2000
-    - gallery
-    - photos
-    - tags
 
-
-keywords: java,git,springcloud #站点关键词，用 “,” 分隔
+#站点关键词，用 “,” 分隔，seo优化
+keywords: piggy926,sydney,笔记,web,java,后端,spring,服务器,linux 
 
 feed:
   limit: 20

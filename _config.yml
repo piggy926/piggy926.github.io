@@ -9,7 +9,7 @@ description: '欢迎来到Piggy的笔记空间~这里主要会记录一些随笔
 keywords:
 author: Piggy
 language: zh-CN
-timezone: ''
+timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -99,7 +99,21 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: shoka
 
-
+# 全局搜索
+algolia:
+  appId:  O9MHXXFGVM
+  apiKey:  3bb236e71f04264f76c2b053c2310304
+  adminApiKey:  1af360cc8a96d61ba72ef867195f9dc6
+  indexName: "hexo" 
+  chunkSize: 5000
+  fields:
+    - title
+    - path
+    - categories
+    - content:strip:truncate,0,2000
+    - gallery
+    - photos
+    - tags
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
