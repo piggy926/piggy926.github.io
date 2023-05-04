@@ -1,5 +1,5 @@
 # Alternate site name
-alternate: Piggy
+alternate: PiggyBlog
 
 open_graph:
   #twitter_id:
@@ -160,7 +160,7 @@ post:
   # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
   count: false
 
-# 奖励 这里我不需要
+# 奖励
 # Reward (Donate)
 reward:
   # If true, reward will be displayed in every article by default.
@@ -168,7 +168,7 @@ reward:
   account:
     wechatpay: /wechatpay.png
     alipay: /alipay.png
-    paypal: /paypal.png
+    #paypal: /paypal.png
 
 # TagCloud settings for tags page.
 tagcloud:
