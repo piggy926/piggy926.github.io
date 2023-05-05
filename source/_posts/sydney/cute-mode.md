@@ -1,5 +1,6 @@
 ---
 title: Sydney(可爱模式)
+sticky: true
 date: 2023-05-04 10:05:15
 tags: 
 - freeSydney
