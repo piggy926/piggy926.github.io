@@ -120,6 +120,6 @@ algolia:
 deploy:
   type: git
   repo: 
-    github: https://github.com/piggy926/piggy926.github.io.git,page
-    gitee: https://gitee.com/pighub/pighub.git,page
+    github: https://github.com/piggy926/piggy926.github.io.git,blog
+    gitee: https://gitee.com/pighub/pighub.git,bolg
   #branch: page
