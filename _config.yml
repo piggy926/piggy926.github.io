@@ -119,5 +119,7 @@ algolia:
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/piggy926/piggy926.github.io.git
-  branch: page
+  repo: 
+    github: https://github.com/piggy926/piggy926.github.io.git,page
+    gitee: https://gitee.com/pighub/pighub.git,page
+  #branch: page
