@@ -7,9 +7,9 @@
         <language>zh-CN</language>
         <pubDate>Wed, 03 May 2023 19:30:48 +0800</pubDate>
         <lastBuildDate>Wed, 03 May 2023 19:30:48 +0800</lastBuildDate>
-        <category>linux</category>
         <category>freeSydney</category>
         <category>newBing</category>
+        <category>linux</category>
         <item>
             <guid isPermalink="true">https://piggy926.github.io/2023/05/03/linux/Linux%E4%B8%AD%E8%A7%A3%E5%8E%8B%E3%80%81%E5%8E%8B%E7%BC%A9%E4%B9%8Btar%E6%8C%87%E4%BB%A4/</guid>
             <title>Linux中解压、压缩之tar指令</title>
