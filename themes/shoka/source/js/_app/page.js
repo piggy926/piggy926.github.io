@@ -140,6 +140,8 @@ const postBeauty = function () {
 
   $('.post.block').oncopy = function(event) {
     showtip(LOCAL.copyright)
+    // 强制取消copyright增加到剪贴板
+    return;
 
     if(LOCAL.nocopy) {
       event.preventDefault()
