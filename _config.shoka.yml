@@ -29,12 +29,12 @@ darkmode: false
 # 自动定位 自动定位到上次浏览的位置
 # By default the page will automatically scroll to the last viewed position
 # if `false`, automatic positioning will be turned off
-auto_scroll: true
+auto_scroll: false
 
 # 是否显示页面加载猫猫
 # Whether to show the loading cat
 loader:
-  start: true # When entering the page
+  start: false # When entering the page
   switch: false # When switching to another page
 
 # 页面特效 单击页面的烟花效果
