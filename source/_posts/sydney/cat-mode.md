@@ -5,7 +5,6 @@ tags:
 - freeSydney
 - newBing
 categories:
-- freeSydney
 - newBing
 copyright: false
 ---

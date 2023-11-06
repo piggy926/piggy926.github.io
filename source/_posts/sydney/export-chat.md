@@ -2,10 +2,8 @@
 title: 导出newBing聊天记录
 date: 2023-05-06 17:33:15
 tags: 
-- freeSydney
 - newBing
 categories:
-- freeSydney
 - newBing
 copyright: false
 ---
