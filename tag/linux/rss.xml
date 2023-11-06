@@ -5,18 +5,19 @@
         <link>https://piggy926.github.io</link>
         <description>欢迎来到Piggy的笔记空间~这里主要会记录一些随笔🌸</description>
         <language>zh-CN</language>
-        <pubDate>Wed, 03 May 2023 19:30:48 +0800</pubDate>
-        <lastBuildDate>Wed, 03 May 2023 19:30:48 +0800</lastBuildDate>
+        <pubDate>Fri, 03 Nov 2023 19:30:48 +0800</pubDate>
+        <lastBuildDate>Fri, 03 Nov 2023 19:30:48 +0800</lastBuildDate>
         <category>linux</category>
         <category>freeSydney</category>
         <category>newBing</category>
+        <category>nginx</category>
         <item>
-            <guid isPermalink="true">https://piggy926.github.io/2023/05/03/linux/Linux%E4%B8%AD%E8%A7%A3%E5%8E%8B%E3%80%81%E5%8E%8B%E7%BC%A9%E4%B9%8Btar%E6%8C%87%E4%BB%A4/</guid>
+            <guid isPermalink="true">https://piggy926.github.io/2023/11/03/linux/Linux-tar/</guid>
             <title>Linux中解压、压缩之tar指令</title>
-            <link>https://piggy926.github.io/2023/05/03/linux/Linux%E4%B8%AD%E8%A7%A3%E5%8E%8B%E3%80%81%E5%8E%8B%E7%BC%A9%E4%B9%8Btar%E6%8C%87%E4%BB%A4/</link>
+            <link>https://piggy926.github.io/2023/11/03/linux/Linux-tar/</link>
             <category>linux</category>
-            <pubDate>Wed, 03 May 2023 19:30:48 +0800</pubDate>
-            <description><![CDATA[ &lt;h2 id=&#34;前言&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#前言&#34;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
+            <pubDate>Fri, 03 Nov 2023 19:30:48 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;前言&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#前言&#34;&gt;#&lt;/a&gt; 前言&lt;/h1&gt;
 &lt;p&gt;&lt;code&gt;tar&lt;/code&gt;  指令是 Linux 系统最常用的打包命令，&lt;br&gt;
 下面举例说明一些 &lt;code&gt;tar&lt;/code&gt;  的 &lt;code&gt;基本案例&lt;/code&gt; 。&lt;/p&gt;
 &lt;h2 id=&#34;打包&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#打包&#34;&gt;#&lt;/a&gt; 打包&lt;/h2&gt;
@@ -37,7 +38,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;c&lt;/code&gt;  与 &lt;code&gt;x&lt;/code&gt;  不可同时使用&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;
+&lt;h1 id=&#34;总结&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;*.tar&lt;/code&gt;  类型文件用  &lt;code&gt;tar -xvf&lt;/code&gt;  解包&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;.tar.gz&lt;/code&gt;  和 &lt;code&gt;.tgz&lt;/code&gt;  用  &lt;code&gt;tar -xzf&lt;/code&gt;  解压&lt;/li&gt;

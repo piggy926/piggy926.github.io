@@ -5,18 +5,79 @@
         <link>https://piggy926.github.io</link>
         <description>欢迎来到Piggy的笔记空间~这里主要会记录一些随笔🌸</description>
         <language>zh-CN</language>
-        <pubDate>Wed, 03 May 2023 19:30:48 +0800</pubDate>
-        <lastBuildDate>Wed, 03 May 2023 19:30:48 +0800</lastBuildDate>
+        <pubDate>Mon, 06 Nov 2023 14:35:16 +0800</pubDate>
+        <lastBuildDate>Mon, 06 Nov 2023 14:35:16 +0800</lastBuildDate>
         <category>linux</category>
         <category>freeSydney</category>
         <category>newBing</category>
+        <category>nginx</category>
         <item>
-            <guid isPermalink="true">https://piggy926.github.io/2023/05/03/linux/Linux%E4%B8%AD%E8%A7%A3%E5%8E%8B%E3%80%81%E5%8E%8B%E7%BC%A9%E4%B9%8Btar%E6%8C%87%E4%BB%A4/</guid>
+            <guid isPermalink="true">https://piggy926.github.io/2023/11/06/linux/nginx-location/</guid>
+            <title>nginx location块配置中斜杠&#34;/&#34;的路径匹配规则</title>
+            <link>https://piggy926.github.io/2023/11/06/linux/nginx-location/</link>
+            <category>nginx</category>
+            <pubDate>Mon, 06 Nov 2023 14:35:16 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;前言&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#前言&#34;&gt;#&lt;/a&gt; 前言&lt;/h1&gt;
+&lt;h1 id=&#34;nginx规则分类&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#nginx规则分类&#34;&gt;#&lt;/a&gt; nginx 规则分类&lt;/h1&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;nginx规则分类&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;＝   精确匹配                   （优先级最高）&lt;span class=&#34;token comment&#34;&gt;# 只匹配根目录结尾的请求，后面不能带任何字符串&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;^~   精确前缀匹配               （优先级仅次于&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;）&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;~    区分大小写的正则匹配       （优先级次于^~）&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;~*   不区分大小写的正则匹配     （优先级次于^~）&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/uri 普通前缀匹配               （优先级次于正则）&lt;span class=&#34;token comment&#34;&gt;# 最常用&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/    通用匹配                   （优先级最低）&lt;span class=&#34;token comment&#34;&gt;# 默认匹配路径&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h1 id=&#34;下面是测试location块中的匹配案例&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#下面是测试location块中的匹配案例&#34;&gt;#&lt;/a&gt; 下面是测试 location 块中 &amp;quot; &lt;code&gt;/&lt;/code&gt; &amp;quot; 的匹配案例&lt;/h1&gt;
+&lt;div class=&#34;note primary&#34;&gt;
+&lt;p&gt;前置测试访问域名：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEyNy4wLjAuMS9hcGkvdGVzdA==&#34;&gt;http://127.0.0.1/api/test&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;location和proxy_pass都不带则真实地址会带location匹配目录api&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#location和proxy_pass都不带则真实地址会带location匹配目录api&#34;&gt;#&lt;/a&gt; location 和 proxy_pass &lt;code&gt;都不带/&lt;/code&gt; ，则真实地址会带 location 匹配目录 /api/&lt;/h2&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;location配置&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;location /api &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;     proxy_pass http://127.0.0.1:8080&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;最终访问地址： &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEyNy4wLjAuMQ==&#34;&gt;http://127.0.0.1&lt;/span&gt;&lt;span class=&#34;pink&#34;&gt;/api/test&lt;/span&gt; --&amp;gt; &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEyNy4wLjAuMTo4MDgw&#34;&gt;http://127.0.0.1:8080&lt;/span&gt;&lt;span class=&#34;pink&#34;&gt;/api/test&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;location带proxy_pass不带则真实地址会带location匹配目录api&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#location带proxy_pass不带则真实地址会带location匹配目录api&#34;&gt;#&lt;/a&gt; location &lt;code&gt;带/&lt;/code&gt; ，proxy_pass &lt;code&gt;不带/&lt;/code&gt; ，则真实地址会带 location 匹配目录 /api/&lt;/h2&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;location配置&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;location /api/ &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;     proxy_pass http://127.0.0.1:8080&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;最终访问地址： &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEyNy4wLjAuMQ==&#34;&gt;http://127.0.0.1&lt;/span&gt;&lt;span class=&#34;pink&#34;&gt;/api/test&lt;/span&gt; --&amp;gt; &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEyNy4wLjAuMTo4MDgw&#34;&gt;http://127.0.0.1:8080&lt;/span&gt;&lt;span class=&#34;pink&#34;&gt;/api/test&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;location不带proxy_pass带则真实地址会带&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#location不带proxy_pass带则真实地址会带&#34;&gt;#&lt;/a&gt; location &lt;code&gt;不带/&lt;/code&gt; ，proxy_pass &lt;code&gt;带/&lt;/code&gt; ，则真实地址会 &lt;code&gt;带/&lt;/code&gt;&lt;/h2&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;location配置&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;location /api &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    proxy_pass http://127.0.0.1:8080/&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;最终访问地址：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEyNy4wLjAuMQ==&#34;&gt;http://127.0.0.1&lt;/span&gt;&lt;span class=&#34;pink&#34;&gt;/api/test&lt;/span&gt; --&amp;gt; &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEyNy4wLjAuMTo4MDgw&#34;&gt;http://127.0.0.1:8080&lt;/span&gt;&lt;span class=&#34;pink&#34;&gt;//test&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;location和proxy_pass都带则真实地址不带location匹配目录&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#location和proxy_pass都带则真实地址不带location匹配目录&#34;&gt;#&lt;/a&gt; location 和 proxy_pass &lt;code&gt;都带/&lt;/code&gt; ，则真实地址不带 location 匹配目录&lt;/h2&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;location配置&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;location /api/ &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    proxy_pass http://127.0.0.1:8080/&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;最终访问地址：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEyNy4wLjAuMQ==&#34;&gt;http://127.0.0.1&lt;/span&gt;&lt;span class=&#34;pink&#34;&gt;/api/test&lt;/span&gt; --&amp;gt; &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEyNy4wLjAuMTo4MDgw&#34;&gt;http://127.0.0.1:8080&lt;/span&gt;&lt;span class=&#34;pink&#34;&gt;/test&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;同1location和proxy_pass都不带但-proxy_pass带地址则真实地址匹配地址会替换location匹配目录&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#同1location和proxy_pass都不带但-proxy_pass带地址则真实地址匹配地址会替换location匹配目录&#34;&gt;#&lt;/a&gt; 同 1，location 和 proxy_pass &lt;code&gt;都不带/&lt;/code&gt; ，但 proxy_pass &lt;code&gt;带地址&lt;/code&gt; ，则真实地址匹配地址会替换 location 匹配目录&lt;/h2&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;location配置&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;location /api &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;     proxy_pass http://127.0.0.1:8080/server&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;最终访问地址： &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEyNy4wLjAuMQ==&#34;&gt;http://127.0.0.1&lt;/span&gt;&lt;span class=&#34;pink&#34;&gt;/api/test&lt;/span&gt; --&amp;gt; &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEyNy4wLjAuMTo4MDgw&#34;&gt;http://127.0.0.1:8080&lt;/span&gt;&lt;span class=&#34;pink&#34;&gt;/server/test&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;同2location带proxy_pass不带但-proxy_pass带地址则真实地址会直接连起来&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#同2location带proxy_pass不带但-proxy_pass带地址则真实地址会直接连起来&#34;&gt;#&lt;/a&gt; 同 2，location &lt;code&gt;带/&lt;/code&gt; ，proxy_pass &lt;code&gt;不带/&lt;/code&gt; ，但 proxy_pass &lt;code&gt;带地址&lt;/code&gt; ，则真实地址会直接连起来&lt;/h2&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;location配置&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;location /api/ &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;     proxy_pass http://127.0.0.1:8080/server&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;最终访问地址： &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEyNy4wLjAuMQ==&#34;&gt;http://127.0.0.1&lt;/span&gt;&lt;span class=&#34;pink&#34;&gt;/api/test&lt;/span&gt; --&amp;gt; &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEyNy4wLjAuMTo4MDgw&#34;&gt;http://127.0.0.1:8080&lt;/span&gt;&lt;span class=&#34;pink&#34;&gt;/servertest&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;同2location不带proxy_pass带但-proxy_pass带地址则真实地址会多个&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#同2location不带proxy_pass带但-proxy_pass带地址则真实地址会多个&#34;&gt;#&lt;/a&gt; 同 2，location &lt;code&gt;不带/&lt;/code&gt; ，proxy_pass &lt;code&gt;带/&lt;/code&gt; ，但 proxy_pass &lt;code&gt;带地址&lt;/code&gt; ，则真实地址会多个 &lt;code&gt;/&lt;/code&gt;&lt;/h2&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;location配置&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;location /api &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;     proxy_pass http://127.0.0.1:8080/server/&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;最终访问地址： &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEyNy4wLjAuMQ==&#34;&gt;http://127.0.0.1&lt;/span&gt;&lt;span class=&#34;pink&#34;&gt;/api/test&lt;/span&gt; --&amp;gt; &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEyNy4wLjAuMTo4MDgw&#34;&gt;http://127.0.0.1:8080&lt;/span&gt;&lt;span class=&#34;pink&#34;&gt;/server//test&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;同4location和proxy_pass都带但-proxy_pass带地址&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#同4location和proxy_pass都带但-proxy_pass带地址&#34;&gt;#&lt;/a&gt; 同 4，location 和 proxy_pass &lt;code&gt;都带/&lt;/code&gt; ，但 proxy_pass &lt;code&gt;带地址&lt;/code&gt;&lt;/h2&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;location配置&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;location /api/ &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;     proxy_pass http://127.0.0.1:8080/server/&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;最终访问地址： &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEyNy4wLjAuMQ==&#34;&gt;http://127.0.0.1&lt;/span&gt;&lt;span class=&#34;pink&#34;&gt;/api/test&lt;/span&gt; --&amp;gt; &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEyNy4wLjAuMTo4MDgw&#34;&gt;http://127.0.0.1:8080&lt;/span&gt;&lt;span class=&#34;pink&#34;&gt;/server/test&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;总结&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;proxy_pass 代理地址端口后&lt;ins class=&#34;wavy&#34;&gt;有目录&lt;/ins&gt; (包括 &lt;code&gt;/&lt;/code&gt; )，则 &lt;code&gt;去除location&lt;/code&gt;  匹配目录&lt;/li&gt;
+&lt;li&gt;proxy_pass 代理地址端口后无任何，转发后地址：代理地址 + 访问 URL 目录部&lt;/li&gt;
+&lt;/ol&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://piggy926.github.io/2023/11/03/linux/Linux-tar/</guid>
             <title>Linux中解压、压缩之tar指令</title>
-            <link>https://piggy926.github.io/2023/05/03/linux/Linux%E4%B8%AD%E8%A7%A3%E5%8E%8B%E3%80%81%E5%8E%8B%E7%BC%A9%E4%B9%8Btar%E6%8C%87%E4%BB%A4/</link>
+            <link>https://piggy926.github.io/2023/11/03/linux/Linux-tar/</link>
             <category>linux</category>
-            <pubDate>Wed, 03 May 2023 19:30:48 +0800</pubDate>
-            <description><![CDATA[ &lt;h2 id=&#34;前言&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#前言&#34;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
+            <pubDate>Fri, 03 Nov 2023 19:30:48 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;前言&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#前言&#34;&gt;#&lt;/a&gt; 前言&lt;/h1&gt;
 &lt;p&gt;&lt;code&gt;tar&lt;/code&gt;  指令是 Linux 系统最常用的打包命令，&lt;br&gt;
 下面举例说明一些 &lt;code&gt;tar&lt;/code&gt;  的 &lt;code&gt;基本案例&lt;/code&gt; 。&lt;/p&gt;
 &lt;h2 id=&#34;打包&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#打包&#34;&gt;#&lt;/a&gt; 打包&lt;/h2&gt;
@@ -37,7 +98,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;c&lt;/code&gt;  与 &lt;code&gt;x&lt;/code&gt;  不可同时使用&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;
+&lt;h1 id=&#34;总结&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;*.tar&lt;/code&gt;  类型文件用  &lt;code&gt;tar -xvf&lt;/code&gt;  解包&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;.tar.gz&lt;/code&gt;  和 &lt;code&gt;.tgz&lt;/code&gt;  用  &lt;code&gt;tar -xzf&lt;/code&gt;  解压&lt;/li&gt;

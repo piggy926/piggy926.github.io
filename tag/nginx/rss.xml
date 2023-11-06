@@ -1,18 +1,23 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://piggy926.github.io</id>
-    <title> • Posts by &#34;linux&#34; category</title>
-    <link href="https://piggy926.github.io" />
-    <updated>2023-11-06T06:35:16.000Z</updated>
-    <category term="linux" />
-    <category term="freeSydney" />
-    <category term="newBing" />
-    <category term="nginx" />
-    <entry>
-        <id>https://piggy926.github.io/2023/11/06/linux/nginx-location/</id>
-        <title>nginx location块配置中斜杠&#34;/&#34;的路径匹配规则</title>
-        <link rel="alternate" href="https://piggy926.github.io/2023/11/06/linux/nginx-location/"/>
-        <content type="html">&lt;h1 id=&#34;前言&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#前言&#34;&gt;#&lt;/a&gt; 前言&lt;/h1&gt;
+<rss version="2.0">
+    <channel>
+        <title> • Posts by &#34;nginx&#34; tag</title>
+        <link>https://piggy926.github.io</link>
+        <description>欢迎来到Piggy的笔记空间~这里主要会记录一些随笔🌸</description>
+        <language>zh-CN</language>
+        <pubDate>Mon, 06 Nov 2023 14:35:16 +0800</pubDate>
+        <lastBuildDate>Mon, 06 Nov 2023 14:35:16 +0800</lastBuildDate>
+        <category>linux</category>
+        <category>freeSydney</category>
+        <category>newBing</category>
+        <category>nginx</category>
+        <item>
+            <guid isPermalink="true">https://piggy926.github.io/2023/11/06/linux/nginx-location/</guid>
+            <title>nginx location块配置中斜杠&#34;/&#34;的路径匹配规则</title>
+            <link>https://piggy926.github.io/2023/11/06/linux/nginx-location/</link>
+            <category>nginx</category>
+            <pubDate>Mon, 06 Nov 2023 14:35:16 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;前言&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#前言&#34;&gt;#&lt;/a&gt; 前言&lt;/h1&gt;
 &lt;h1 id=&#34;nginx规则分类&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#nginx规则分类&#34;&gt;#&lt;/a&gt; nginx 规则分类&lt;/h1&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;nginx规则分类&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;＝   精确匹配                   （优先级最高）&lt;span class=&#34;token comment&#34;&gt;# 只匹配根目录结尾的请求，后面不能带任何字符串&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;^~   精确前缀匹配               （优先级仅次于&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;）&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;~    区分大小写的正则匹配       （优先级次于^~）&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;~*   不区分大小写的正则匹配     （优先级次于^~）&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/uri 普通前缀匹配               （优先级次于正则）&lt;span class=&#34;token comment&#34;&gt;# 最常用&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/    通用匹配                   （优先级最低）&lt;span class=&#34;token comment&#34;&gt;# 默认匹配路径&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h1 id=&#34;下面是测试location块中的匹配案例&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#下面是测试location块中的匹配案例&#34;&gt;#&lt;/a&gt; 下面是测试 location 块中 &amp;quot; &lt;code&gt;/&lt;/code&gt; &amp;quot; 的匹配案例&lt;/h1&gt;
 &lt;div class=&#34;note primary&#34;&gt;
@@ -64,42 +69,7 @@
 &lt;li&gt;proxy_pass 代理地址端口后&lt;ins class=&#34;wavy&#34;&gt;有目录&lt;/ins&gt; (包括 &lt;code&gt;/&lt;/code&gt; )，则 &lt;code&gt;去除location&lt;/code&gt;  匹配目录&lt;/li&gt;
 &lt;li&gt;proxy_pass 代理地址端口后无任何，转发后地址：代理地址 + 访问 URL 目录部&lt;/li&gt;
 &lt;/ol&gt;
-</content>
-        <category term="nginx" />
-        <updated>2023-11-06T06:35:16.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://piggy926.github.io/2023/11/03/linux/Linux-tar/</id>
-        <title>Linux中解压、压缩之tar指令</title>
-        <link rel="alternate" href="https://piggy926.github.io/2023/11/03/linux/Linux-tar/"/>
-        <content type="html">&lt;h1 id=&#34;前言&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#前言&#34;&gt;#&lt;/a&gt; 前言&lt;/h1&gt;
-&lt;p&gt;&lt;code&gt;tar&lt;/code&gt;  指令是 Linux 系统最常用的打包命令，&lt;br&gt;
-下面举例说明一些 &lt;code&gt;tar&lt;/code&gt;  的 &lt;code&gt;基本案例&lt;/code&gt; 。&lt;/p&gt;
-&lt;h2 id=&#34;打包&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#打包&#34;&gt;#&lt;/a&gt; 打包&lt;/h2&gt;
-&lt;h3 id=&#34;-cvf仅打包不压缩&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#-cvf仅打包不压缩&#34;&gt;#&lt;/a&gt;  &lt;code&gt;-cvf&lt;/code&gt; &lt;strong&gt; 仅打包&lt;/strong&gt;，不压缩&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# 将 abc 文件夹打包，并指定名称为 temp.tar&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;tar&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-cvf&lt;/span&gt; temp.tar ./abc&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;-zcvf打包并压缩增加z选项结果文件后缀一般为targz或tgz&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#-zcvf打包并压缩增加z选项结果文件后缀一般为targz或tgz&#34;&gt;#&lt;/a&gt;  &lt;code&gt;-zcvf&lt;/code&gt; &lt;strong&gt; 打包并压缩&lt;/strong&gt;，增加 &lt;code&gt;z&lt;/code&gt;  选项，结果文件后缀一般为 &lt;code&gt;.tar.gz&lt;/code&gt;  或 &lt;code&gt;.tgz&lt;/code&gt;&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# 将 abc 文件夹打包并压缩，并指定名称为 temp.tar.gz&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;tar&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-zcvf&lt;/span&gt; temp.tar.gz ./abc&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;解包&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#解包&#34;&gt;#&lt;/a&gt; 解包&lt;/h2&gt;
-&lt;h3 id=&#34;-xvf仅解包对于tar文件使用&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#-xvf仅解包对于tar文件使用&#34;&gt;#&lt;/a&gt;  &lt;code&gt;-xvf&lt;/code&gt;  仅解包，对于 &lt;code&gt;tar&lt;/code&gt;  文件使用&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# 将 temp.tar 文件解包到当前目录&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;tar&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-xvf&lt;/span&gt; temp.tar&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;-zxvf解压缩对于targz或tgz文件使用&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#-zxvf解压缩对于targz或tgz文件使用&#34;&gt;#&lt;/a&gt;  &lt;code&gt;-zxvf&lt;/code&gt;  解压缩，对于 &lt;code&gt;.tar.gz&lt;/code&gt;  或 &lt;code&gt;.tgz&lt;/code&gt;  文件使用&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# 将 temp.tar 文件解压到当前目录&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;tar&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-zxvf&lt;/span&gt; temp.tar.gz&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;指令详解&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#指令详解&#34;&gt;#&lt;/a&gt; 指令详解&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;-c&lt;/code&gt;  (create：创建)，&lt;strong&gt;创建新的包&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-v&lt;/code&gt;  (verbose：冗长的)，&lt;strong&gt;显示 tar 指令处理时的详细信息&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-f&lt;/code&gt;  (file：文档)，&lt;strong&gt;指定 tar 包文件名&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-x&lt;/code&gt;  (extract：提取)，&lt;strong&gt;进行解压缩&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-z&lt;/code&gt;  调用 gzip 程序来压缩文件，压缩后的文件名称以.gz 结尾&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-r&lt;/code&gt;  向压缩文件后追加新的文件&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;c&lt;/code&gt;  与 &lt;code&gt;x&lt;/code&gt;  不可同时使用&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;总结&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;*.tar&lt;/code&gt;  类型文件用  &lt;code&gt;tar -xvf&lt;/code&gt;  解包&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;.tar.gz&lt;/code&gt;  和 &lt;code&gt;.tgz&lt;/code&gt;  用  &lt;code&gt;tar -xzf&lt;/code&gt;  解压&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-        <category term="linux" />
-        <updated>2023-11-03T11:30:48.000Z</updated>
-    </entry>
-</feed>
+ ]]></description>
+        </item>
+    </channel>
+</rss>
