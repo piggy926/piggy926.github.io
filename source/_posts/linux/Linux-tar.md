@@ -1,13 +1,13 @@
 ---
 title: Linux中解压、压缩之tar指令
-date: 2023-05-03 19:30:48
+date: 2023-11-03 19:30:48
 categories:
 - linux
 tags:
 - linux
 ---
 
-## 前言
+# 前言
 `tar`指令是Linux系统最常用的打包命令，
 下面举例说明一些`tar`的`基本案例`。
 ## 打包
@@ -43,7 +43,7 @@ tar -zxvf temp.tar.gz
 
 > `c`与`x`不可同时使用
 
-## 总结
+# 总结
  - `*.tar`类型文件用 `tar -xvf`解包
  - `.tar.gz`和`.tgz` 用 `tar -xzf`解压
 
